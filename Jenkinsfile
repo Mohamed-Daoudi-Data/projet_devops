@@ -28,7 +28,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 // Exécuter les tests unitaires ici, en supposant que vous avez un script ou une commande pour cela
-                sh 'echo "Exécuter les commandes de test ici"'
+                bat 'echo "Exécuter les commandes de test ici"'
                 // Par exemple : sh './run-tests.sh'
             }
         }
@@ -54,7 +54,7 @@ pipeline {
             }
             steps {
                 // Déploiement de l'image sur l'environnement cible, ajustez selon votre environnement
-                sh 'echo "Exécuter les commandes de déploiement ici"'
+                bat 'echo "Exécuter les commandes de déploiement ici"'
                 // Par exemple : sh 'kubectl rollout restart deployment/monapp'
             }
         }
