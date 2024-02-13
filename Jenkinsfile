@@ -33,8 +33,16 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', DOCKER_CREDENTIALS_ID) {
-                        docker.image("${DOCKER_IMAGE}:${env.BUILD_NUMBER}").push()
+                    try {
+                        docker.withRegistry('https://registry.hub.docker.com/', DOCKER_CREDENTIALS_ID) {
+                            docker.image("${DOCKER_IMAGE}:${env.BUILD_NUMBER}").push()
+                        }
+                        echo 'Image pushed successfully'
+                        // Ici, vous pouvez ajouter une notification de succès, par exemple un email ou une notification Slack
+                    } catch (Exception e) {
+                        echo "Failed to push the Docker image"
+                        // Gérer l'erreur comme vous le souhaitez ici, par exemple envoyer une notification d'échec
+                        throw e // Rethrow l'exception pour marquer le build comme échoué
                     }
                 }
             }
