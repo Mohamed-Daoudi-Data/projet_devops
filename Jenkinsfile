@@ -53,9 +53,9 @@ pipeline {
                 branch 'main'
             }
             steps {
-                // Déploiement de l'image sur l'environnement cible, ajustez selon votre environnement
+                // Déploiement de l'image sur l'environnement cible
                 bat 'echo "Exécuter les commandes de déploiement ici"'
-                // Par exemple : sh 'kubectl rollout restart deployment/monapp'
+                bat 'kubectl rollout restart deployment/monapp'
             }
         }
     }
